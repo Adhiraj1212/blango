@@ -21,7 +21,6 @@ import blango_auth.views
 from django_registration.backends.activation.views import RegistrationView
 from blango_auth.forms import BlangoRegistrationForm
 
-
 import blog.views
 
 
@@ -37,10 +36,12 @@ urlpatterns = [
      RegistrationView.as_view(form_class=BlangoRegistrationForm), 
      name="django_registration_register",
      ),
+
 ]
 
 if settings.DEBUG:
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
         path("accounts/", include("django_registration.backends.activation.urls")),
+        path("api/v1/", include("blog.api_urls")),
     ]
